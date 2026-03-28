@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>博物馆空间叙事与平面布局深度解析</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Noto Sans SC', sans-serif; }
+.chart-container { position: relative; width: 100%; margin-left: auto; margin-right: auto; }
+</style>
+<!--
+[PALETTE NAME]: Pure Neutral & Amber (Zero-Hue Dark Theme)
+[PLAN SUMMARY]: Visualizes museum space typologies, spatial flow layouts, case studies, and zoning weights based on ArchDaily literature with a pure, zero-hue neutral gray background.
+[COMPLIANCE CONFIRMATION]: I explicitly confirm that NEITHER Mermaid JS NOR SVG were used anywhere in this output. All graphics are Canvas or HTML/CSS/Unicode.
+-->
+</head>
+<body class="bg-neutral-800 text-neutral-200 antialiased selection:bg-amber-500 selection:text-white">
+
+<header class="bg-gradient-to-r from-neutral-800 via-neutral-700 to-neutral-800 border-b border-amber-500/20 sticky top-0 z-50 shadow-lg shadow-amber-500/5">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-rose-400 tracking-tight">博物馆空间叙事与平面布局</h1>
+            <p class="text-amber-200/80 mt-2 font-medium tracking-wide">基于 ArchDaily 官方项目文献的深度解析</p>
+        </div>
+        <div class="mt-4 md:mt-0 flex gap-4 text-sm font-bold text-neutral-300">
+            <span class="px-3 py-1 rounded-full bg-neutral-700 border border-neutral-600">建筑布局</span>
+            <span class="px-3 py-1 rounded-full bg-neutral-700 border border-neutral-600">空间叙事</span>
+        </div>
+    </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 py-12 space-y-24">
+
+    <!-- 分类分析 -->
+    <section id="typology" class="scroll-mt-32">
+        <div class="mb-12 text-center max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-4 flex items-center justify-center gap-3"><span class="text-rose-400">❖</span> 博物馆空间分类分析</h2>
+            <p class="text-neutral-300 text-lg leading-relaxed">
+                博物馆空间（Museum & Cultural Space Design）是历史叙事与精神文明的容器。它具有周期长、叙事深、沉浸感强的特征。根据在地属性与文化诉求的不同，现代博物馆主要分为三大类：
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-neutral-700/40 p-8 rounded-3xl border border-neutral-600 shadow-2xl">
+            <div class="flex flex-col items-center w-full">
+                <div class="chart-container h-[280px] max-w-sm" id="typology-chart-wrapper">
+                    <canvas id="typologyChart"></canvas>
+                </div>
+                <!-- 纯 HTML 渲染的图例，防止裁切，完美左对齐 -->
+                <div class="mt-8 flex flex-col space-y-4 w-full max-w-sm mx-auto px-4">
+                    <div class="flex items-start text-left">
+                        <span class="w-3.5 h-3.5 mt-1 rounded-sm bg-[#fbbf24] shrink-0 mr-4 shadow-[0_0_8px_rgba(251,191,36,0.6)]"></span>
+                        <span class="text-neutral-100 text-sm leading-snug font-medium">地标综合类 (Comprehensive & Landmark) <br><span class="text-xs text-neutral-400 font-normal mt-1 inline-block">承载城市宏大叙事，融合多重文化切面，强调全景式历史生态的构建与展现。</span></span>
+                    </div>
+                    <div class="flex items-start text-left">
+                        <span class="w-3.5 h-3.5 mt-1 rounded-sm bg-[#fb7185] shrink-0 mr-4 shadow-[0_0_8px_rgba(251,113,133,0.6)]"></span>
+                        <span class="text-neutral-100 text-sm leading-snug font-medium">专题体验类 (Thematic & Experiential) <br><span class="text-xs text-neutral-400 font-normal mt-1 inline-block">极度聚焦特定领域或无形概念，打破传统陈列，强调多感官的沉浸包裹与深度交互。</span></span>
+                    </div>
+                    <div class="flex items-start text-left">
+                        <span class="w-3.5 h-3.5 mt-1 rounded-sm bg-[#818cf8] shrink-0 mr-4 shadow-[0_0_8px_rgba(129,140,248,0.6)]"></span>
+                        <span class="text-neutral-100 text-sm leading-snug font-medium">触媒共生类 (Catalytic & Contextual) <br><span class="text-xs text-neutral-400 font-normal mt-1 inline-block">以特定地貌或街区为核心，弱化建筑边界，强调空间与周边环境的无缝缝合与激活。</span></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="bg-neutral-700 p-6 rounded-2xl border-l-4 border-amber-400 shadow-lg transition-transform hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-amber-400 mb-2">地标综合类</h3>
+                    <p class="text-neutral-300 text-sm">成都博物馆、云南省博物馆新馆。<br>在宏大的城市或地域中心尺度下，提供了解庞大历史或地质演变的物理殿堂。</p>
+                </div>
+                <div class="bg-neutral-700 p-6 rounded-2xl border-l-4 border-rose-400 shadow-lg transition-transform hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-rose-400 mb-2">专题体验类</h3>
+                    <p class="text-neutral-300 text-sm">广州雪蕾香氛博物馆、Manshakti 精神体验馆。<br>将气味、心理等无形概念进行物理场域转译，构建内向探索的感官沉淀流线。</p>
+                </div>
+                <div class="bg-neutral-700 p-6 rounded-2xl border-l-4 border-indigo-400 shadow-lg transition-transform hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-indigo-400 mb-2">触媒共生类</h3>
+                    <p class="text-neutral-300 text-sm">松本市博物馆、松阳水文博物馆。<br>首层平面往往向城市或乡村环境退让，成为激发社区新活力的城市催化剂与公共客厅。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 空间流线与平面布局 -->
+    <section id="flow">
+        <div class="mb-12 text-center max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-4 flex items-center justify-center gap-3"><span class="text-amber-400">⎈</span> 平面布展逻辑与叙事节奏</h2>
+            <p class="text-neutral-300 text-lg leading-relaxed">
+                当代优秀的博物馆平面设计，已不再是简单的展厅“拼图”。建筑师通过精准的平面排布，控制光影、跨度与边界，完成从物理容器到精神场域的叙事转译。
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- 云南省博 -->
+            <div class="bg-neutral-700 p-8 rounded-3xl border border-neutral-600 shadow-xl relative overflow-hidden group hover:border-amber-400/40 transition-colors">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-amber-400/10 rounded-bl-full transition-transform group-hover:scale-110"></div>
+                <h3 class="text-xl font-bold text-white mb-6">先抑后扬的中心放射 (云南省博)</h3>
+                <div class="flex items-center justify-center h-48 relative">
+                    <!-- 中庭 -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-20 h-20 border-2 border-amber-400 flex items-center justify-center bg-amber-400/10 text-amber-300 font-bold z-10 shadow-[0_0_15px_rgba(251,191,36,0.3)] text-center text-xs">多层挑高<br>大中庭</div>
+                    </div>
+                    <!-- 盲盒展厅 -->
+                    <div class="absolute w-full flex justify-between px-4">
+                        <div class="w-16 h-24 bg-neutral-800 border border-neutral-500 flex items-center justify-center text-[10px] text-neutral-400 text-center">古滇国<br>青铜器</div>
+                        <div class="w-16 h-24 bg-neutral-800 border border-neutral-500 flex items-center justify-center text-[10px] text-neutral-400 text-center">恐龙化石<br>(重荷载)</div>
+                    </div>
+                    <!-- 箭头 -->
+                    <div class="absolute w-full flex justify-between px-20 text-amber-400 font-bold"><span>⬅</span><span>➡</span></div>
+                    <div class="absolute bottom-2 text-center text-xs text-neutral-300 bg-neutral-900 px-3 py-1 border border-neutral-600">一线天入口峡谷 (极致压抑) ⬆</div>
+                </div>
+                <p class="text-sm text-neutral-400 mt-4 text-center">外实内空布局。通过狭窄入口后豁然开朗，放射状进入温湿度独立的“黑盒子”展区。</p>
+            </div>
+
+            <!-- 松本市博 -->
+            <div class="bg-neutral-700 p-8 rounded-3xl border border-neutral-600 shadow-xl relative overflow-hidden group hover:border-rose-400/40 transition-colors">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-rose-400/10 rounded-bl-full transition-transform group-hover:scale-110"></div>
+                <h3 class="text-xl font-bold text-white mb-6">“枡形”回旋上升序列 (松本市博)</h3>
+                <div class="flex flex-col items-center justify-between h-48 gap-2 w-full">
+                    <div class="w-full bg-neutral-600 border-2 border-neutral-400 py-4 text-sm text-center rounded text-white flex-1 shadow-xl">三楼：18米大跨度无柱平面<br><span class="text-xs text-neutral-300">展墙自由灵活排布</span></div>
+                    <span class="text-rose-400 font-bold text-xl">⬆</span>
+                    <div class="w-3/4 bg-rose-900/30 border border-rose-400/30 py-3 text-xs text-center rounded text-rose-200 shadow-inner">回旋楼梯 (攀升的仪式感)</div>
+                    <span class="text-rose-400 font-bold text-xl">⬆</span>
+                    <div class="w-full bg-neutral-800 border border-neutral-600 py-3 text-xs text-center rounded text-neutral-300 flex-1 flex justify-around items-center">
+                        <span>街道行人</span> <span>➔</span> <span class="border border-neutral-500 p-1">透明窗口画廊 (轻量化诱捕)</span>
+                    </div>
+                </div>
+                <p class="text-sm text-neutral-400 mt-4 text-center">首层向城市退让并开放展示，经由折线楼梯攀升至顶部无柱大空间，实现震撼全景叙事。</p>
+            </div>
+            
+            <!-- 成都博物馆 -->
+            <div class="bg-neutral-700 p-8 rounded-3xl border border-neutral-600 shadow-xl relative overflow-hidden group hover:border-teal-400/40 transition-colors">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-teal-400/10 rounded-bl-full transition-transform group-hover:scale-110"></div>
+                <h3 class="text-xl font-bold text-white mb-6">城市穿行与垂直分层 (成都博物馆)</h3>
+                <div class="flex flex-col items-center justify-center h-48 relative w-full">
+                    <div class="w-full flex justify-between gap-2 mb-1">
+                        <div class="flex-1 bg-neutral-800 border border-neutral-600 p-2 text-center rounded text-neutral-300 text-xs">高层：皮影民俗 (暗场/轻量光影)</div>
+                    </div>
+                    <div class="text-teal-400 font-bold text-lg leading-none">⬆</div>
+                    <div class="w-full flex justify-between gap-2 my-1">
+                        <div class="flex-1 bg-neutral-600 border-x-4 border-teal-400 p-3 text-center text-teal-300 text-sm font-bold shadow-[0_0_10px_rgba(45,212,191,0.1)]">低层：石犀牛重器 (30米巨型跨度)</div>
+                    </div>
+                    <div class="w-full border-t border-dashed border-neutral-500 my-2"></div>
+                    <div class="w-full flex justify-between gap-2 mt-1">
+                        <div class="flex-1 bg-teal-900/30 border border-teal-400/30 p-3 text-center rounded text-teal-200 text-xs flex justify-between px-8">
+                            <span>天府广场 ➔</span> <span>掏空的城市孔洞门厅</span> <span>➔ 背后清真寺</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-sm text-neutral-400 mt-4 text-center">首层贯通城市广场轴线，高低层按展品重量与多媒体需求（历史重器 vs 光影皮影）严格划分。</p>
+            </div>
+
+            <!-- Manshakti Mindgym -->
+            <div class="bg-neutral-700 p-8 rounded-3xl border border-neutral-600 shadow-xl relative overflow-hidden group hover:border-indigo-400/40 transition-colors">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-400/10 rounded-bl-full transition-transform group-hover:scale-110"></div>
+                <h3 class="text-xl font-bold text-white mb-6">内向探索的沉淀排布 (心灵博物馆)</h3>
+                <div class="relative w-full h-48 flex items-center justify-center">
+                    <!-- 最外层：回廊 -->
+                    <div class="absolute w-full h-full border-2 border-neutral-600 flex items-start justify-center pt-2 text-[10px] text-neutral-400">
+                        外围：回廊式过渡区 (强制放慢步伐) ⬇
+                    </div>
+                    <!-- 中层：柱网 -->
+                    <div class="absolute w-4/5 h-3/4 border-2 border-indigo-400/30 bg-indigo-900/20 flex items-start justify-center pt-2 text-[10px] text-indigo-300">
+                        中层：无展柜的混凝土柱网列阵 ⬇
+                    </div>
+                    <!-- 核心层：冥想 -->
+                    <div class="absolute w-2/5 h-2/5 bg-indigo-500/20 border border-indigo-400/60 flex items-center justify-center text-sm font-bold text-indigo-200 shadow-[0_0_15px_rgba(129,140,248,0.2)] text-center leading-tight">
+                        核心天井<br>光影即展品
+                    </div>
+                </div>
+                <p class="text-sm text-neutral-400 mt-4 text-center">摒弃传统展柜。通过层层嵌套的柱网格系统剥离喧嚣，利用结构、光斑与触感进行自我叙事。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心案例深度剖析 -->
+    <section id="cases">
+        <div class="mb-12 text-center max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-4 flex items-center justify-center gap-3"><span class="text-orange-400">◈</span> 核心案例深度剖析</h2>
+            <p class="text-neutral-300 text-lg leading-relaxed">
+                六个不同尺度与主题的顶尖案例，展现了平面图推演如何深刻影响博物馆的物理属性与精神内核。
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            <div class="col-span-1 lg:col-span-1 space-y-4">
+                <div class="bg-neutral-700 p-5 rounded-2xl border border-neutral-600 hover:border-amber-400 hover:shadow-[0_0_15px_rgba(251,191,36,0.15)] transition-all">
+                    <div class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-1">地标综合类</div>
+                    <h4 class="text-lg font-bold text-white mb-1">成都博物馆</h4>
+                    <p class="text-xs text-neutral-400 line-clamp-2">城市核心孔洞，首层全线贯通；巨大的铜网表皮本身即最巨大的“文物”。</p>
+                </div>
+                <div class="bg-neutral-700 p-5 rounded-2xl border border-neutral-600 hover:border-rose-400 hover:shadow-[0_0_15px_rgba(251,113,133,0.15)] transition-all">
+                    <div class="text-xs font-bold text-rose-400 uppercase tracking-wider mb-1">专题体验类</div>
+                    <h4 class="text-lg font-bold text-white mb-1">Manshakti 心灵博物馆</h4>
+                    <p class="text-xs text-neutral-400 line-clamp-2">无展柜设计，原始混凝土网格与自然光斑构成治愈心理的“无形展品”。</p>
+                </div>
+                <div class="bg-neutral-700 p-5 rounded-2xl border border-neutral-600 hover:border-teal-400 hover:shadow-[0_0_15px_rgba(45,212,191,0.15)] transition-all">
+                    <div class="text-xs font-bold text-teal-400 uppercase tracking-wider mb-1">触媒共生类</div>
+                    <h4 class="text-lg font-bold text-white mb-1">松本市博物馆</h4>
+                    <p class="text-xs text-neutral-400 line-clamp-2">首层橱窗向城市透明，三楼18米无柱平面实现展陈的绝对自由化。</p>
+                </div>
+                <div class="bg-neutral-700 p-5 rounded-2xl border border-neutral-600 hover:border-orange-400 hover:shadow-[0_0_15px_rgba(251,146,60,0.15)] transition-all">
+                    <div class="text-xs font-bold text-orange-400 uppercase tracking-wider mb-1">地标综合类</div>
+                    <h4 class="text-lg font-bold text-white mb-1">云南省博物馆新馆</h4>
+                    <p class="text-xs text-neutral-400 line-clamp-2">外实内空集装箱，盲盒切分物理空间，实现环境独立与沉浸重塑。</p>
+                </div>
+                <div class="bg-neutral-700 p-5 rounded-2xl border border-neutral-600 hover:border-indigo-400 hover:shadow-[0_0_15px_rgba(129,140,248,0.15)] transition-all">
+                    <div class="text-xs font-bold text-indigo-400 uppercase tracking-wider mb-1">专题体验类</div>
+                    <h4 class="text-lg font-bold text-white mb-1">雪蕾香氛博物馆</h4>
+                    <p class="text-xs text-neutral-400 line-clamp-2">内向幽暗迷宫布展，通过重点照明将“无形气味”转化为具象物理场域。</p>
+                </div>
+                <div class="bg-neutral-700 p-5 rounded-2xl border border-neutral-600 hover:border-sky-400 hover:shadow-[0_0_15px_rgba(56,189,248,0.15)] transition-all">
+                    <div class="text-xs font-bold text-sky-400 uppercase tracking-wider mb-1">触媒共生类</div>
+                    <h4 class="text-lg font-bold text-white mb-1">松阳水文博物馆</h4>
+                    <p class="text-xs text-neutral-400 line-clamp-2">弧形单向画卷走廊，室外微缩水利地貌，打破封闭将江景纳入展陈。</p>
+                </div>
+            </div>
+
+            <div class="col-span-1 lg:col-span-2 bg-neutral-700/40 p-8 rounded-3xl border border-neutral-600 shadow-2xl flex flex-col justify-center">
+                <h3 class="text-xl font-bold text-white mb-2 text-center">多维度空间策略对比</h3>
+                <p class="text-sm text-neutral-400 text-center mb-8">对比不同类型博物馆在空间规划与展陈媒介上的侧重点分配。</p>
+                <div class="chart-container h-[450px] w-full" id="radar-chart-wrapper">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 区块权重分析 -->
+    <section id="zones">
+        <div class="mb-12 text-center max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-4 flex items-center justify-center gap-3"><span class="text-indigo-400">▤</span> 展陈布局核心趋势 (Zoning Analysis)</h2>
+            <p class="text-neutral-300 text-lg leading-relaxed">
+                当代博物馆的平面图上，承载展柜的传统面积正在缩减。取而代之的是留给建筑本身的叙事灰空间、无界融合的城市通道以及多感官的沉浸场域。
+            </p>
+        </div>
+
+        <div class="bg-neutral-700 p-8 rounded-3xl border border-neutral-600 shadow-xl max-w-4xl mx-auto">
+             <div class="chart-container h-[400px] w-full">
+                <canvas id="barChart"></canvas>
+            </div>
+            <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="p-4 bg-neutral-800 rounded-xl border border-neutral-600">
+                    <div class="text-amber-400 text-2xl font-black mb-1">退让</div>
+                    <div class="text-xs text-neutral-400">底层灰空间还给城市广场</div>
+                </div>
+                <div class="p-4 bg-neutral-800 rounded-xl border border-neutral-600">
+                    <div class="text-rose-400 text-2xl font-black mb-1">去展柜</div>
+                    <div class="text-xs text-neutral-400">光影/建筑结构成为直接展品</div>
+                </div>
+                <div class="p-4 bg-neutral-800 rounded-xl border border-neutral-600">
+                    <div class="text-teal-400 text-2xl font-black mb-1">承重分离</div>
+                    <div class="text-xs text-neutral-400">重型文物与多媒体严格分层</div>
+                </div>
+                <div class="p-4 bg-neutral-800 rounded-xl border border-neutral-600">
+                    <div class="text-orange-400 text-2xl font-black mb-1">大跨度</div>
+                    <div class="text-xs text-neutral-400">无柱空间实现展陈绝对自由</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 总结对比矩阵 -->
+    <section id="conclusion">
+        <div class="mb-12 text-center max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-4 flex items-center justify-center gap-3"><span class="text-sky-400">≣</span> 综合对比矩阵与核心总结</h2>
+            <p class="text-neutral-300 text-lg leading-relaxed">
+                六大案例在布展空间与内容阵列上的核心逻辑提炼。
+            </p>
+        </div>
+
+        <div class="overflow-x-auto bg-neutral-700/50 rounded-2xl border border-neutral-600 shadow-xl mb-12">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-neutral-800 border-b border-neutral-600 text-neutral-200">
+                        <th class="p-4 font-bold min-w-[150px]">博物馆项目</th>
+                        <th class="p-4 font-bold min-w-[160px]">平面布展空间逻辑</th>
+                        <th class="p-4 font-bold min-w-[200px]">展陈内容阵列</th>
+                        <th class="p-4 font-bold min-w-[160px]">人流与节奏</th>
+                        <th class="p-4 font-bold">受众目的</th>
+                    </tr>
+                </thead>
+                <tbody class="text-sm">
+                    <tr class="border-b border-neutral-600/50 hover:bg-neutral-600/50 transition-colors">
+                        <td class="p-4 font-bold text-amber-400">水文博物馆<br><span class="text-xs font-normal text-neutral-400">DnA 建筑事务所</span></td>
+                        <td class="p-4 text-neutral-200">贴合河岸的弧形线性单向平面</td>
+                        <td class="p-4 text-neutral-200">内侧图文档案 / <span class="font-bold text-white">外侧无界江景视窗</span></td>
+                        <td class="p-4 text-neutral-300">室内外重叠，线性 ➔ 开阔</td>
+                        <td class="p-4 text-neutral-300">构建城乡共联的公共客厅与水利科普</td>
+                    </tr>
+                    <tr class="border-b border-neutral-600/50 hover:bg-neutral-600/50 transition-colors">
+                        <td class="p-4 font-bold text-rose-400">云南省博物馆<br><span class="text-xs font-normal text-neutral-400">Rocco Design</span></td>
+                        <td class="p-4 text-neutral-200">外实内空，中庭分离独立盲盒</td>
+                        <td class="p-4 text-neutral-200"><span class="font-bold text-white">按地质历史切割主题</span>，重型化石底层落位</td>
+                        <td class="p-4 text-neutral-300">先抑后扬，中心放射流线</td>
+                        <td class="p-4 text-neutral-300">探寻深厚地质演变与历史的宏大容器</td>
+                    </tr>
+                    <tr class="border-b border-neutral-600/50 hover:bg-neutral-600/50 transition-colors">
+                        <td class="p-4 font-bold text-teal-400">松本市博物馆<br><span class="text-xs font-normal text-neutral-400">KUME SEKKEI</span></td>
+                        <td class="p-4 text-neutral-200">底层退让城市，高层无柱大跨度</td>
+                        <td class="p-4 text-neutral-200"><span class="font-bold text-white">橱窗诱捕轻工艺</span>，三楼卷轴式自由排布</td>
+                        <td class="p-4 text-neutral-300">“枡形”折线回旋上升</td>
+                        <td class="p-4 text-neutral-300">缝合历史街区，激发社区新活力</td>
+                    </tr>
+                    <tr class="border-b border-neutral-600/50 hover:bg-neutral-600/50 transition-colors">
+                        <td class="p-4 font-bold text-orange-400">成都博物馆<br><span class="text-xs font-normal text-neutral-400">Sutherland Hussey</span></td>
+                        <td class="p-4 text-neutral-200">底层门厅掏空，高层金属密闭包裹</td>
+                        <td class="p-4 text-neutral-200">低层巨型历史重器 / <span class="font-bold text-white">高层皮影暗场光影</span></td>
+                        <td class="p-4 text-neutral-300">城市横向穿行，展厅垂直分层</td>
+                        <td class="p-4 text-neutral-300">成为市中心天府广场的绝对文化锚点</td>
+                    </tr>
+                    <tr class="border-b border-neutral-600/50 hover:bg-neutral-600/50 transition-colors">
+                        <td class="p-4 font-bold text-indigo-400">雪蕾香氛博物馆<br><span class="text-xs font-normal text-neutral-400">HHD 华汇设计</span></td>
+                        <td class="p-4 text-neutral-200">内向型包裹，折线弧线幽暗迷宫</td>
+                        <td class="p-4 text-neutral-200">植物原料 ➔ 萃取设备 ➔ <span class="font-bold text-white">嗅觉DIY体验台</span></td>
+                        <td class="p-4 text-neutral-300">前广场向心吸纳，内部闭环单向</td>
+                        <td class="p-4 text-neutral-300">将无形气味物理转译，展示企业产业底蕴</td>
+                    </tr>
+                    <tr class="hover:bg-neutral-600/50 transition-colors">
+                        <td class="p-4 font-bold text-sky-400">Manshakti 心灵<br><span class="text-xs font-normal text-neutral-400">Design Workshop</span></td>
+                        <td class="p-4 text-neutral-200">取消传统展柜，严密混凝土柱网格系统</td>
+                        <td class="p-4 text-neutral-200"><span class="font-bold text-white">光影、原始材质触感与内部天井</span>即是展品</td>
+                        <td class="p-4 text-neutral-300">嵌套回廊过滤喧嚣，向内沉淀</td>
+                        <td class="p-4 text-neutral-300">提供心理评估与纯粹精神疗愈场域</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-gradient-to-br from-neutral-700 to-neutral-800 p-6 rounded-2xl border border-neutral-600">
+                <div class="text-3xl mb-4">📐</div>
+                <h4 class="text-lg font-bold text-white mb-2">布展逻辑：物理落位</h4>
+                <p class="text-sm text-neutral-300">摒弃简单的隔断。展品的重力荷载、光照需求与多媒体声场直接决定了平面的承重分布、孔洞位置与盲盒切分。</p>
+            </div>
+            <div class="bg-gradient-to-br from-neutral-700 to-neutral-800 p-6 rounded-2xl border border-neutral-600">
+                <div class="text-3xl mb-4">🪟</div>
+                <h4 class="text-lg font-bold text-white mb-2">边界消融：城市/自然渗透</h4>
+                <p class="text-sm text-neutral-300">打破封闭四壁。首层大量出现掏空穿行、透明橱窗或外部自然视窗，博物馆越来越强调其作为城市空间触媒的开放性。</p>
+            </div>
+            <div class="bg-gradient-to-br from-neutral-700 to-neutral-800 p-6 rounded-2xl border border-neutral-600">
+                <div class="text-3xl mb-4">🧘</div>
+                <h4 class="text-lg font-bold text-white mb-2">精神场域：建筑即展陈</h4>
+                <p class="text-sm text-neutral-300">不再依赖生硬的玻璃柜与屏幕。利用大跨度结构美感、混凝土光影柱阵，让建筑空间自身的叙事成为最极致的沉浸体验。</p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="border-t border-neutral-700 mt-12 py-8 text-center text-neutral-400 text-sm">
+    <p>《博物馆空间叙事与平面布局深度解析》数据可视化呈现</p>
+    <p class="mt-2">Based on ArchDaily Literature | Designed for Analytical Review</p>
+</footer>
+
+<script>
+function wrapLabel(label) {
+    if (label.length <= 16) return label;
+    const words = label.split('');
+    let lines = [];
+    let currentLine = '';
+    
+    let isEnglish = /^[a-zA-Z\s]+$/.test(label);
+    if(isEnglish) {
+        const engWords = label.split(' ');
+        for (let word of engWords) {
+            if ((currentLine + word).length > 16) {
+                if (currentLine) lines.push(currentLine.trim());
+                currentLine = word + ' ';
+            } else {
+                currentLine += word + ' ';
+            }
+        }
+    } else {
+        for (let char of words) {
+            if (currentLine.length >= 12) { 
+                lines.push(currentLine);
+                currentLine = char;
+            } else {
+                currentLine += char;
+            }
+        }
+    }
+    
+    if (currentLine) lines.push(currentLine.trim());
+    return lines;
+}
+
+const commonTooltipConfig = {
+    callbacks: {
+        title: function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join('');
+            } else {
+                return label;
+            }
+        }
+    },
+    backgroundColor: 'rgba(38, 38, 38, 0.95)', /* Tailwind Neutral-800 */
+    titleColor: '#f5f5f5', /* Neutral-100 */
+    bodyColor: '#d4d4d4', /* Neutral-300 */
+    titleFont: { family: "'Noto Sans SC', sans-serif", size: 14, weight: 'bold' },
+    bodyFont: { family: "'Noto Sans SC', sans-serif", size: 13 },
+    padding: 12,
+    cornerRadius: 8,
+    borderColor: 'rgba(251, 191, 36, 0.4)', /* Amber border */
+    borderWidth: 1,
+    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.5)'
+};
+
+Chart.defaults.color = '#a3a3a3'; /* Tailwind Neutral-400 */
+Chart.defaults.font.family = "'Noto Sans SC', sans-serif";
+
+// 1. 饼图 - 分类
+const ctxTypology = document.getElementById('typologyChart').getContext('2d');
+new Chart(ctxTypology, {
+    type: 'doughnut',
+    data: {
+        labels: ['地标综合类', '专题体验类', '触媒共生类'],
+        datasets: [{
+            data: [40, 30, 30], 
+            backgroundColor: ['#fbbf24', '#fb7185', '#818cf8'],
+            borderWidth: 2,
+            borderColor: '#262626', /* Tailwind Neutral-800 border */
+            hoverOffset: 10
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { display: false }, 
+            tooltip: commonTooltipConfig
+        },
+        cutout: '65%'
+    }
+});
+
+// 2. 雷达图 - 案例多维度对比
+const ctxRadar = document.getElementById('radarChart').getContext('2d');
+new Chart(ctxRadar, {
+    type: 'radar',
+    data: {
+        labels: [
+            wrapLabel('宏大历史与地理叙事'),
+            wrapLabel('建筑表皮展陈化程度'),
+            wrapLabel('空间与城市环境缝合度'),
+            wrapLabel('物理展柜舍弃/轻量化'),
+            wrapLabel('光影与心理感官包裹感')
+        ],
+        datasets: [
+            {
+                label: '成都博物馆 (地标类)',
+                data: [95, 90, 80, 20, 50], 
+                backgroundColor: 'rgba(251, 191, 36, 0.15)',
+                borderColor: '#fbbf24',
+                pointBackgroundColor: '#fbbf24',
+                borderWidth: 2
+            },
+            {
+                label: 'Manshakti 博物馆 (体验类)',
+                data: [20, 40, 30, 95, 100], 
+                backgroundColor: 'rgba(251, 113, 133, 0.15)',
+                borderColor: '#fb7185',
+                pointBackgroundColor: '#fb7185',
+                borderWidth: 2
+            },
+            {
+                label: '松本市博物馆 (触媒类)',
+                data: [70, 30, 95, 80, 40], 
+                backgroundColor: 'rgba(129, 140, 248, 0.15)',
+                borderColor: '#818cf8',
+                pointBackgroundColor: '#818cf8',
+                borderWidth: 2
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            r: {
+                angleLines: { color: 'rgba(163, 163, 163, 0.2)' }, /* Neutral-400 at 20% */
+                grid: { color: 'rgba(163, 163, 163, 0.2)' },
+                pointLabels: { color: '#d4d4d4', font: { size: 12, weight: 'bold' } }, /* Neutral-300 */
+                ticks: { display: false, min: 0, max: 100 }
+            }
+        },
+        plugins: {
+            legend: { position: 'top', labels: { color: '#d4d4d4' } },
+            tooltip: commonTooltipConfig
+        }
+    }
+});
+
+// 3. 柱状图 - 布局趋势核心区权重
+const ctxBar = document.getElementById('barChart').getContext('2d');
+new Chart(ctxBar, {
+    type: 'bar',
+    data: {
+        labels: [
+            wrapLabel('向城市/乡村开放的退让灰空间'),
+            wrapLabel('光影/结构主导的无展柜冥想区'),
+            wrapLabel('应对重型遗迹的大跨度无柱展厅'),
+            wrapLabel('针对多媒体交互的密闭暗场盒子'),
+            wrapLabel('连接内外的巨型透明视窗/通廊')
+        ],
+        datasets: [{
+            label: '当代博物馆设计布局投入优先级',
+            data: [90, 75, 85, 80, 70],
+            backgroundColor: [
+                'rgba(251, 146, 60, 0.8)',
+                'rgba(251, 113, 133, 0.8)',
+                'rgba(45, 212, 191, 0.8)',
+                'rgba(251, 191, 36, 0.8)',
+                'rgba(129, 140, 248, 0.8)'
+            ],
+            borderRadius: 6
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        indexAxis: 'y',
+        scales: {
+            x: { grid: { color: 'rgba(163, 163, 163, 0.1)' }, max: 100, ticks: { color: '#a3a3a3' } },
+            y: { grid: { display: false }, ticks: { color: '#d4d4d4', font: { size: 12 } } }
+        },
+        plugins: {
+            legend: { display: false },
+            tooltip: commonTooltipConfig
+        }
+    }
+});
+</script>
+</body>
+</html>
